@@ -68,7 +68,8 @@ const Conclusion = () => {
           img.onload = resolve
           img.onerror = reject
         })
-        pdf.addImage(img, 'PNG', 14, 12, 30, 12)
+  // Adjusted logo size to prevent overlap with header
+  pdf.addImage(img, 'PNG', 14, 12, 40, 16)
       } catch (e1) {
         try {
           const img2 = new Image()
@@ -77,7 +78,8 @@ const Conclusion = () => {
             img2.onload = resolve
             img2.onerror = reject
           })
-          pdf.addImage(img2, 'PNG', 14, 12, 30, 12)
+          // Adjusted logo size to prevent overlap with header (fallback)
+          pdf.addImage(img2, 'PNG', 14, 12, 40, 16)
         } catch (e2) {
           console.warn('Logo failed to load, continuing without it.')
         }
@@ -140,17 +142,7 @@ const Conclusion = () => {
       })
       pdf.text(`Completed on ${date}`, pageWidth / 2, 190, { align: 'center' })
 
-      // Company info
-      pdf.setFontSize(18)
-      pdf.setTextColor(59, 130, 246)
-      pdf.setFont('helvetica', 'bold')
-      pdf.text('AP-Learning Systems', pageWidth / 2, 210, { align: 'center' })
-
-      // Division text
-      pdf.setFontSize(12)
-      pdf.setTextColor(107, 114, 128)
-      pdf.setFont('helvetica', 'normal')
-      pdf.text('A Division of AP-Networks LLC', pageWidth / 2, 220, { align: 'center' })
+  // Removed bottom AP-Learning Systems text per request
 
       // Completion Code
       pdf.setFontSize(10)
