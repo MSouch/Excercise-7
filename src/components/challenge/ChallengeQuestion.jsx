@@ -23,6 +23,7 @@ const ChallengeQuestion = ({challenge, onComplete}) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (!selectedAnswer) return
+    window.scrollTo({ top: 0, behavior: 'smooth' })
 
     const correct = selectedAnswer === challenge.correctAnswer
     setIsCorrect(correct)
@@ -44,6 +45,7 @@ const ChallengeQuestion = ({challenge, onComplete}) => {
     setSelectedAnswer('')
     setShowFeedback(false)
     setIsCorrect(false)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const feedback = challenge.feedback[selectedAnswer]
@@ -179,7 +181,7 @@ const ChallengeQuestion = ({challenge, onComplete}) => {
                 </div>
                     <div className="flex items-center justify-center mt-6">
                       <button
-                        onClick={() => onComplete(challenge.id)}
+                        onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); onComplete(challenge.id) }}
                         className="inline-flex items-center space-x-2 bg-primary-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-primary-700 transition-colors"
                       >
                         <span>Continue</span>
@@ -238,7 +240,7 @@ const ChallengeQuestion = ({challenge, onComplete}) => {
                 <div className="flex justify-center space-x-4 mt-6">
                   {!isCorrect && (
                     <button
-                      onClick={handleRetry}
+                      onClick={() => { handleRetry(); }}
                       className="bg-primary-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-primary-700 transition-colors"
                     >
                       Try Again
@@ -246,7 +248,7 @@ const ChallengeQuestion = ({challenge, onComplete}) => {
                   )}
                   {isCorrect && !showModelAnswer && (
                     <button
-                      onClick={() => setShowModelAnswer(true)}
+                      onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setShowModelAnswer(true) }}
                       className="bg-success-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-success-700 transition-colors"
                     >
                       Continue

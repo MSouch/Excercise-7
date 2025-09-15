@@ -37,10 +37,13 @@ const ScrollControl = () => {
     }
   }, [updateState])
 
-  const scrollAmount = () => Math.max(200, window.innerHeight - 120)
+  // Incremental scroll configuration
+  const BASE_STEP = 220
+  const LARGE_STEP = 400 // used when holding Shift for faster travel
 
-  const handleScroll = (direction) => {
-    const delta = direction === 'down' ? scrollAmount() : -scrollAmount()
+  const handleScroll = (direction, evt) => {
+    const step = (evt && evt.shiftKey) ? LARGE_STEP : BASE_STEP
+    const delta = direction === 'down' ? step : -step
     window.scrollBy({ top: delta, behavior: 'smooth' })
   }
 
@@ -50,7 +53,7 @@ const ScrollControl = () => {
         type="button"
         aria-label="Scroll up"
         disabled={atTop}
-        onClick={() => handleScroll('up')}
+  onClick={(e) => handleScroll('up', e)}
         className={`p-3 rounded-full shadow-lg border text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500
           ${atTop ? 'bg-gray-300 cursor-not-allowed border-gray-200' : 'bg-primary-600 hover:bg-primary-700 border-primary-500'}
         `}
@@ -61,7 +64,7 @@ const ScrollControl = () => {
         type="button"
         aria-label="Scroll down"
         disabled={atBottom}
-        onClick={() => handleScroll('down')}
+  onClick={(e) => handleScroll('down', e)}
         className={`p-3 rounded-full shadow-lg border text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500
           ${atBottom ? 'bg-gray-300 cursor-not-allowed border-gray-200' : 'bg-primary-600 hover:bg-primary-700 border-primary-500'}
         `}

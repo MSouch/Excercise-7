@@ -120,6 +120,7 @@ const ExerciseForm=({exercise,onComplete})=> {
 
   const handleSubmit=async (e)=> {
     e.preventDefault()
+    window.scrollTo({ top: 0, behavior: 'smooth' })
     
     // Validate all fields are completed
     if (!validateForm()) {
@@ -153,6 +154,7 @@ const ExerciseForm=({exercise,onComplete})=> {
   }
 
   const handleProceed=()=> {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
     onComplete(exercise.id)
   }
 
