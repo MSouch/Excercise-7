@@ -20,6 +20,24 @@ body {
   min-height: 100vh;
 }
 
+/* Ensure scrolling works properly when app is embedded in an iframe */
+html, body, #root {
+  overscroll-behavior: contain;
+  height: auto;
+}
+
+/* When host wants full height sections but still allow scroll inside iframe */
+.embedded-full-height {
+  min-height: 100%;
+  height: auto;
+}
+
+/* Utility: if a parent applies overflow hidden to iframe, allow internal focus scroll chaining */
+body.embed-mode {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
