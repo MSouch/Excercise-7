@@ -10,6 +10,9 @@ import { FiChevronUp, FiChevronDown } from 'react-icons/fi'
  *  - Accessible with aria-labels and keyboard activation
  */
 const ScrollControl = () => {
+  // Physical scroll controls temporarily disabled per request.
+  return null
+  /* Original implementation preserved below for future reactivation.
   const [isInIframe, setIsInIframe] = useState(false)
   const [atTop, setAtTop] = useState(true)
   const [atBottom, setAtBottom] = useState(false)
@@ -73,6 +76,7 @@ const ScrollControl = () => {
       </button>
     </div>
   )
+  */
 }
 
 export default ScrollControl
